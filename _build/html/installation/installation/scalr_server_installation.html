@@ -83,6 +83,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Scalr Server Install Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#supported-operating-systems">Supported Operating Systems:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-requirements">Network Requirements</a></li>
 </ul>
 </li>
 </ul>
@@ -193,38 +194,27 @@
 <li>Debian 7.x or 8.x</li>
 <li>Ubuntu 14.04 or 16.04</li>
 </ul>
-<table border="1" class="docutils">
-<colgroup>
-<col width="7%" />
-<col width="18%" />
-<col width="46%" />
-<col width="28%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Port</th>
-<th class="head">Protocol</th>
-<th class="head">Direction</th>
-<th class="head">Usage</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>80</td>
-<td>40</td>
-<td>Cloud Instance &gt; Scalr Server</td>
-<td>Scalarizr Agent</td>
-</tr>
-<tr class="row-odd"><td>443</td>
-<td>41</td>
-<td>&#160;</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>5671</td>
-<td>42</td>
-<td>&#160;</td>
-<td>&#160;</td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="section" id="network-requirements">
+<h2>Network Requirements<a class="headerlink" href="#network-requirements" title="Permalink to this headline">¶</a></h2>
+<p>See the list below or the architecture diagram above:
+=====   ============   =========================================  =================================
+Port    Protocol       Direction                                  Usage
+=====   ============   =========================================  =================================
+80       TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent
+443      TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent
+5671     TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent (rabbitmq)
+6275     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+6276     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+6291     TCP           Between Scalr Server Nodes (excluding DB)  InfluxDB
+8008     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (update service)
+8009     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
+8010     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (API)
+8011     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
+8012     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
+8013     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (control)
+15671    TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+=====   ============   =========================================  =================================</p>
 </div>
 </div>
 

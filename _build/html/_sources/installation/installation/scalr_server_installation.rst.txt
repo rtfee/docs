@@ -37,12 +37,23 @@ Supported Operating Systems:
 * Debian 7.x or 8.x
 * Ubuntu 14.04 or 16.04
 
-
-
-=====   ============   ===============================  ===================
-Port    Protocol       Direction                        Usage
-=====   ============   ===============================  ===================
-80       40            Cloud Instance > Scalr Server    Scalarizr Agent
-443      41
-5671     42
-=====   ============   ===============================  ===================
+Network Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^
+See the list below or the architecture diagram above:
+=====   ============   =========================================  =================================
+Port    Protocol       Direction                                  Usage
+=====   ============   =========================================  =================================
+80       TCP           Cloud Instance > Scalr Server              Scalarizr Agent
+443      TCP           Cloud Instance > Scalr Server              Scalarizr Agent
+5671     TCP           Cloud Instance > Scalr Server              Scalarizr Agent (rabbitmq)
+6275     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+6276     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+6291     TCP           Between Scalr Server Nodes (excluding DB)  InfluxDB
+8008     TCP           Scalr Host > Cloud Instance                Scalarizr Agent (update service)
+8009     TCP           Scalr Host > Cloud Instance                Reserved, not used at this time
+8010     TCP           Scalr Host > Cloud Instance                Scalarizr Agent (API)
+8011     TCP           Scalr Host > Cloud Instance                Reserved, not used at this time
+8012     TCP           Scalr Host > Cloud Instance                Reserved, not used at this time
+8013     TCP           Scalr Host > Cloud Instance                Scalarizr Agent (control)
+15671    TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
+=====   ============   =========================================  =================================
