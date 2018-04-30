@@ -14,3 +14,8 @@ Get the scalr-server package:
 
    curl -s https://<token>:@packagecloud.io/install/repositories/scalr/scalr-server-ee/script.deb.sh | sudo bash
 
+Install the package:
+
+.. code-block:: shell
+
+   apt-get install scalr-server
