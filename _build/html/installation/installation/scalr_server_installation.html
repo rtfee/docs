@@ -173,6 +173,51 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apt-get install scalr-server
 </pre></div>
 </div>
+<p>Run the following on only one of the servers when prompted:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scalr-server-wizard
+</pre></div>
+</div>
+<p>The step above should have done two things, created the /etc/scalr-server directory and the scalr-server-secrets.json file.</p>
+<p>Please create the /etc/scalr-server directory on the remaining servers and copy the scalr-server-secrets.json file as well as the license.json file to ALL servers if you haven’t done so already.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir /etc/scalr-server
+<span class="c1">##license.json file should be pasted in the following location on each server:##</span>
+vi /etc/scalr-server/license.json
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">##scalr-server-secrets.json should be pasted in the following location on each server:##</span>
+vi /etc/scalr-server/scalr-server-secrets.json
+</pre></div>
+</div>
+<p>Create the scalr-server.rb and scalr-server-local.rb configuration file on each server:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click here for examples of the scalr-server.rb and scalr-server-local.rb.
+In the scalr-server.rb, replace lines 10-16 with the IP or hostname of your actual servers.
+When placing the scalr-server-local.rb files on their respective servers, make sure they are renamed to scalr-server-local.rb, not the name you see in the Github link. When placing the scalr-server-local.rb on the MySQL Master, be sure to update the following line with the actual slave IP:
+mysql[:repl_allow_connections_from] = ‘SLAVE-IP’</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vi /etc/scalr-server/scalr-server.rb
+vi /etc/scalr-server/scalr-server-local.rb
+</pre></div>
+</div>
+<p>At this point there should be four files in the /etc/scalr-server directory on each server. The license.json, scalr-server.rb and scalr-server-secrets.json files should be exactly the same on all of the servers, the scalr-server-local.rb file should be the only file that is different from server to server:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>user@scalr:/etc/scalr-server# ls
+license.json  scalr-server-local.rb  scalr-server.rb  scalr-server-secrets.json
+</pre></div>
+</div>
+<p>Reconfigure Scalr on the DB node:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/scalr-server/bin/scalr-server-ctl reconfigure
+</pre></div>
+</div>
+<p>Reconfigure Scalr on the worker server next:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/scalr-server/bin/scalr-server-ctl reconfigure
+</pre></div>
+</div>
+<p>Reconfigure Scalr on the remaining nodes:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/scalr-server/bin/scalr-server-ctl reconfigure
+</pre></div>
+</div>
+<p>You should now be able to log into Scalr by putting the hostname or IP address that is listed as your endpoint in the scalr-server.rb into a browser. To log in the first time, please find the admin password in the scalr-server-secrets.json file.</p>
 </div>
 </div>
 
