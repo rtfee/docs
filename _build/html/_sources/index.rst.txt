@@ -8,11 +8,13 @@ Welcome to Scalr's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   Install
-
+   usage/installation
+   usage/quickstart
+   ...
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+Will this show up?
