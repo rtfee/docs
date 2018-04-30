@@ -8,10 +8,10 @@ Scalr’s architecture consist of 7 modules (Proxy, App, Session, RabbitMQ, Work
 
 It is completely acceptable to group multiple components onto one virtual machine as the load for these services are minimal. The following are the recommended specs for the initial configuration:
 
-- Load Balancer of choice. The target should be the Scalr servers over 80 or 443 and 5671.
-
-- 1 VM for the Worker: 4CPU, 8GB RAM ,100GB storage mounted on /opt/scalr-server on each server.
-NOTE: Worker should only be enabled on one server.
+* Load Balancer of choice. The target should be the Scalr servers over 80 or 443 and 5671.
+*1 VM for the Worker:
+ * 4CPU, 8GB RAM
+ * 100GB storage mounted on /opt/scalr-server on each server
 
 - 1 VM for InfluxDB:
 4CPU, 16GB RAM, 100GB storage mounted on /opt/scalr-server on each server
