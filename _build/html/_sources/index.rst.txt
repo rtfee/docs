@@ -10,6 +10,7 @@ Welcome to Scalr's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   Install
 
 
 * :ref:`genindex`
