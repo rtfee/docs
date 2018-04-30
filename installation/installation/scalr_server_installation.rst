@@ -45,7 +45,7 @@ Create the scalr-server.rb and scalr-server-local.rb configuration file on each 
 
 .. note::
 
-   Click here for examples of the scalr-server.rb and scalr-server-local.rb. 
+   Click `here <https://github.com/scalr-tutorials/scalr-server-configuration/tree/master/6-server-ha/>`_. for examples of the scalr-server.rb and scalr-server-local.rb. 
    In the scalr-server.rb, replace lines 10-16 with the IP or hostname of your actual servers.
    When placing the scalr-server-local.rb files on their respective servers, make sure they are renamed to scalr-server-local.rb, not the name you see in the Github link. When placing the scalr-server-local.rb on the MySQL Master, be sure to update the following line with the actual slave IP: 
    mysql[:repl_allow_connections_from] = 'SLAVE-IP'
