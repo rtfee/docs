@@ -1,5 +1,5 @@
-Scalr Server Install Guide
-==========================
+Scalr Server Architecture and Requirements
+==========================================
 Architecture
 ^^^^^^^^^^^^
 Scalr’s architecture consist of 7 modules (Proxy, App, Session, RabbitMQ, Worker, InfluxDB, Main DB, and Cost Analytics DB).  The recommended Scalr HA deployment consists of 6 VMs (Instances) and is outlined in the following diagram:
