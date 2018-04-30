@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scalr Server Maintenance &mdash; Scalr 0.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Scalr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Install Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Scalr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Scalr Server Maintenance</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/installation/installation/scalr_server_maintenance.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalr-server-maintenance">
+<h1>Scalr Server Maintenance<a class="headerlink" href="#scalr-server-maintenance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="upgrades">
+<h2>Upgrades<a class="headerlink" href="#upgrades" title="Permalink to this headline">¶</a></h2>
+<p>We recommend having two Scalr environments, one for Development and Production. It is not uncommon for the majority of our customers to upgrade Development the day a new release comes out and to upgrade Production a week or so after. Here is the manual process to upgrade any Scalr architecture:</p>
+<p>Backup your database (this is an example, choose any location for the backup):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/opt/scalr-server/embedded/bin/mysqldump --all-databases -u<span class="o">{</span>sql_username<span class="o">}</span> -p<span class="o">{</span>sql_password<span class="o">}</span> <span class="p">|</span> gzip &gt; /tmp/pre_upgrade_backup.gz
+</pre></div>
+</div>
+<p>Stop all scalr hosts using:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scalr-server-manage stop all
+</pre></div>
+</div>
+<p>Upgrade scalr across all hosts:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">##For RPM based installations##</span>
+yum upgrade scalr-server
+
+<span class="c1">##For DEB based installations##</span>
+apt upgrade scalr-server
+</pre></div>
+</div>
+<p>Once all hosts have finished running the yum upgrade, <strong>run a reconfigure on the main database first</strong>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scalr-server-ctl reconfigure
+</pre></div>
+</div>
+<p>Once the main database is finished reconfiguring run the reconfigure across all other hosts:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>scalr-server-ctl reconfigure
+</pre></div>
+</div>
+</div>
+<div class="section" id="automated-upgrades">
+<h2>Automated Upgrades<a class="headerlink" href="#automated-upgrades" title="Permalink to this headline">¶</a></h2>
+<p>As you can see, the Scalr upgrade process is fairly simple, because of this we encourage customers to automate the process using their favorite configuration management method. We have put together an example using Ansible: <a class="reference external" href="https://github.com/scalr-tutorials/scalr-server-upgrade-ansible">https://github.com/scalr-tutorials/scalr-server-upgrade-ansible</a></p>
+</div>
+<div class="section" id="monitoring-best-practices">
+<h2>Monitoring Best Practices<a class="headerlink" href="#monitoring-best-practices" title="Permalink to this headline">¶</a></h2>
+<p><strong>Automated Testing</strong>
+While Scalr is a very reliable, it is a good idea to perform some automated testing on the basic functionality of Scalr, like launching Farms/Servers. This will not only test Scalr, but will make sure that the following is function correctly:</p>
+<ul class="simple">
+<li>Cloud provider functionality</li>
+<li>Cloud credentials</li>
+<li>Network connections to private and public clouds</li>
+<li>Connections to any configuration management tools</li>
+</ul>
+<p>Here is an example that we created using Ansible: <a class="reference external" href="https://github.com/scalr-tutorials/scalr-automated-testing-via-ansible">https://github.com/scalr-tutorials/scalr-automated-testing-via-ansible</a></p>
+<p><strong>Infrastructure</strong></p>
+<p>Disk:</p>
+<p>If you used the standard Scalr installation guide, you should have mounted the main disk that Scalr uses to /opt/scalr-server/ on all Scalr nodes. Reference <a class="reference external" href="https://scalr-labs.atlassian.net/wiki/spaces/DOCS/pages/301039670/Scalr+Server+Maintenance">this FAQ page</a> for installations in different directories.  The database node will grow faster than others, but none of the nodes should ever be over 80% in disk use.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@scalr:~# df -h /opt/scalr-server/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdb         50G  <span class="m">2</span>.1G   45G   <span class="m">5</span>% /opt/scalr-server
+</pre></div>
+</div>
+<p><strong>Application</strong></p>
+<p>When it comes to monitoring Scalr itself, it is fairly simple as there are only two components of note to monitor:</p>
+<ul class="simple">
+<li>Scalr Supervisor</li>
+<li>Scalr Services - Scalr uses a command-line tool to manage the internal services, scalr-server-manage.</li>
+</ul>
+<p>Make sure the Scalr Supervisor is up:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@scalr:~# service scalr status
+scalr is running
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@scalr:~# /etc/init.d/scalr status
+scalr is running
+</pre></div>
+</div>
+<p>Using the Scalr Server command-line management tool, make sure the individual service are up (they are likely spread across multiple nodes):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@scalr:~# scalr-server-manage status
+analytics_poller                 RUNNING   pid <span class="m">3031</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+analytics_processor              RUNNING   pid <span class="m">3059</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+beat                             RUNNING   pid <span class="m">3063</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+dbqueue                          RUNNING   pid <span class="m">3035</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+license-manager                  RUNNING   pid <span class="m">3049</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+monitor                          RUNNING   pid <span class="m">3089</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+msgsender                        RUNNING   pid <span class="m">3068</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+plotter                          RUNNING   pid <span class="m">3062</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+poller                           RUNNING   pid <span class="m">3075</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-crond                      RUNNING   pid <span class="m">3036</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-httpd                      RUNNING   pid <span class="m">3080</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-influxdb                   RUNNING   pid <span class="m">3087</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-memcached                  RUNNING   pid <span class="m">3039</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-mysql                      RUNNING   pid <span class="m">2705</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:10:10
+scalr-nginx                      RUNNING   pid <span class="m">3030</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-rabbitmq                   RUNNING   pid <span class="m">3037</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+scalr-rrd                        RUNNING   pid <span class="m">3041</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+szrupdater                       RUNNING   pid <span class="m">3040</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+workflow-engine                  RUNNING   pid <span class="m">3072</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+zmq_service                      RUNNING   pid <span class="m">3032</span>, uptime <span class="m">2</span> days, <span class="m">4</span>:08:22
+</pre></div>
+</div>
+<p>These services should always be in a “RUNNING” state, if there is any other state returned then it should be flagged by your monitoring tool.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, scalr_team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.01',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
