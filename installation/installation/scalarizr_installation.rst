@@ -19,9 +19,8 @@ Storage Volume addition	                      No              Yes
 Software Firewall/ iptables management		    No              Yes
 ========================================    ============   ==================
 
-Requirements
-^^^^^^^^^^^^^
-**Supported OS Versions**
+OS Requirements
+^^^^^^^^^^^^^^^^
 
 ========================================    ================================  
 Operating System                            Supported Versions
@@ -59,6 +58,7 @@ Open a shell and execute:
    PLATFORM=ec2 && curl -L https://<YOUR_SCALR_URL>/public/linux/latest/$PLATFORM/install_scalarizr.sh | sudo bash
 
 Set the PLATFORM variable to the cloud platform that you are using.
+
 ===================   ===================
 Value                  Cloud Platform
 ===================   ===================

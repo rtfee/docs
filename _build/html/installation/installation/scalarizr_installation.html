@@ -86,7 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="scalr_server_maintenance.html">Scalr Server Maintenance</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Scalarizr Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#about">About</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#os-requirements">OS Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#network-requirements">Network Requirements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-install-scalarizr-on-linux-images">How to Install Scalarizr on Linux Images</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-install-scalarizr-on-windows-images">How to Install Scalarizr on Windows Images</a></li>
@@ -214,9 +214,8 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p><strong>Supported OS Versions</strong></p>
+<div class="section" id="os-requirements">
+<h2>OS Requirements<a class="headerlink" href="#os-requirements" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="56%" />
@@ -314,18 +313,41 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PLATFORM</span><span class="o">=</span>ec2 <span class="o">&amp;&amp;</span> curl -L https://&lt;YOUR_SCALR_URL&gt;/public/linux/latest/<span class="nv">$PLATFORM</span>/install_scalarizr.sh <span class="p">|</span> sudo bash
 </pre></div>
 </div>
-<p>Set the PLATFORM variable to the cloud platform that you are using.
-===================   ===================
-Value                  Cloud Platform
-===================   ===================
-PLATFORM=ec2             Amazon EC2
-PLATFORM=gce             Google Compute Engine
-PLATFORM=azure         Microsoft Azure
-PLATFORM=openstack         For any OpenStack based platform
-PLATFORM=cloudstack        CloudStack
-PLATFORM=rackspace         Rackspace Legacy Cloud
-PLATFORM=vmware        VMware
-===================   ===================</p>
+<p>Set the PLATFORM variable to the cloud platform that you are using.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Value</th>
+<th class="head">Cloud Platform</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>PLATFORM=ec2</td>
+<td>Amazon EC2</td>
+</tr>
+<tr class="row-odd"><td>PLATFORM=gce</td>
+<td>Google Compute Engine</td>
+</tr>
+<tr class="row-even"><td>PLATFORM=azure</td>
+<td>Microsoft Azure</td>
+</tr>
+<tr class="row-odd"><td>PLATFORM=openstack</td>
+<td>For any OpenStack based platform</td>
+</tr>
+<tr class="row-even"><td>PLATFORM=cloudstack</td>
+<td>CloudStack</td>
+</tr>
+<tr class="row-odd"><td>PLATFORM=rackspace</td>
+<td>Rackspace Legacy Cloud</td>
+</tr>
+<tr class="row-even"><td>PLATFORM=vmware</td>
+<td>VMware</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="how-to-install-scalarizr-on-windows-images">
 <h2>How to Install Scalarizr on Windows Images<a class="headerlink" href="#how-to-install-scalarizr-on-windows-images" title="Permalink to this headline">¶</a></h2>
