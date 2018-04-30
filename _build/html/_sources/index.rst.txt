@@ -5,7 +5,7 @@ Welcome to Scalr's documentation!
 .. toctree::
    :maxdepth: 2
 
-   installation
+   installation/scalr_server_installation
    
 
 * :ref:`genindex`
