@@ -8,3 +8,4 @@ Install Guide
    installation/scalr_server_installation
    installation/scalr_server_ha_setup
    installation/scalr_server_maintenance
+   installation/scalarizr_installation

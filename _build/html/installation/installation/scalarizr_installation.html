@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scalarizr Installation &mdash; Scalr 0.01 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Scalr Server Maintenance" href="scalr_server_maintenance.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Scalr
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Install Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="scalr_server_architecture.html">Scalr Server Architecture and Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalr_server_installation.html">Scalr Server Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalr_server_ha_setup.html">Scalr Server HA Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalr_server_maintenance.html">Scalr Server Maintenance</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scalarizr Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-requirements">Network Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-install-scalarizr-on-linux-images">How to Install Scalarizr on Linux Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-install-scalarizr-on-windows-images">How to Install Scalarizr on Windows Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-create-your-own-scalarizr-repo">How to Create Your Own Scalarizr Repo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Scalr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../installation.html">Install Guide</a> &raquo;</li>
+        
+      <li>Scalarizr Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/installation/installation/scalarizr_installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scalarizr-installation">
+<h1>Scalarizr Installation<a class="headerlink" href="#scalarizr-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>Scalarizr is Scalr’s management agent. It is optionally installed on every Scalr-managed Server (Instance), and used for Orchestration and monitoring.  As mentioned, the agent is optional, but without the agent the Scalr experience is limited, please see the following comparison chart:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="17%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Capability</th>
+<th class="head">Agentless</th>
+<th class="head">Agent Installed</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Launch, Terminate, Suspend, Resume</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Security Group management</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Tagging</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Autoscaling</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Orchestration (script execution)</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Monitoring</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-even"><td>Storage Volume addition</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="row-odd"><td>Software Firewall/ iptables management</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p><strong>Supported OS Versions</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="56%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Operating System</th>
+<th class="head">Supported Versions</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ubuntu</td>
+<td>12.04 - 16.04 LTS</td>
+</tr>
+<tr class="row-odd"><td>Debian</td>
+<td>6.x - 7.x</td>
+</tr>
+<tr class="row-even"><td>RHEL / CentOS</td>
+<td>5.x - 7.x</td>
+</tr>
+<tr class="row-odd"><td>Windows Server</td>
+<td>2008 R2, 2012(all), and 2016</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="network-requirements">
+<h2>Network Requirements<a class="headerlink" href="#network-requirements" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="13%" />
+<col width="45%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Port</th>
+<th class="head">Protocol</th>
+<th class="head">Direction</th>
+<th class="head">Usage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>80</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent</td>
+</tr>
+<tr class="row-odd"><td>443</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent</td>
+</tr>
+<tr class="row-even"><td>5671</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent (rabbitmq)</td>
+</tr>
+<tr class="row-odd"><td>8008</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (update service)</td>
+</tr>
+<tr class="row-even"><td>8009</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-odd"><td>8010</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (API)</td>
+</tr>
+<tr class="row-even"><td>8011</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-odd"><td>8012</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-even"><td>8013</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (control)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="how-to-install-scalarizr-on-linux-images">
+<h2>How to Install Scalarizr on Linux Images<a class="headerlink" href="#how-to-install-scalarizr-on-linux-images" title="Permalink to this headline">¶</a></h2>
+<p>Open a shell and execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">PLATFORM</span><span class="o">=</span>ec2 <span class="o">&amp;&amp;</span> curl -L https://&lt;YOUR_SCALR_URL&gt;/public/linux/latest/<span class="nv">$PLATFORM</span>/install_scalarizr.sh <span class="p">|</span> sudo bash
+</pre></div>
+</div>
+<p>Set the PLATFORM variable to the cloud platform that you are using.
+===================   ===================
+Value                  Cloud Platform
+===================   ===================
+PLATFORM=ec2             Amazon EC2
+PLATFORM=gce             Google Compute Engine
+PLATFORM=azure         Microsoft Azure
+PLATFORM=openstack         For any OpenStack based platform
+PLATFORM=cloudstack        CloudStack
+PLATFORM=rackspace         Rackspace Legacy Cloud
+PLATFORM=vmware        VMware
+===================   ===================</p>
+</div>
+<div class="section" id="how-to-install-scalarizr-on-windows-images">
+<h2>How to Install Scalarizr on Windows Images<a class="headerlink" href="#how-to-install-scalarizr-on-windows-images" title="Permalink to this headline">¶</a></h2>
+<p>Open the administrator powershell and execute:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>iex <span class="o">((</span>New-Object Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s1">&#39;https://&lt;YOUR_SCALR_URL&gt;/public/windows/latest/install_scalarizr.ps1&#39;</span><span class="o">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-create-your-own-scalarizr-repo">
+<h2>How to Create Your Own Scalarizr Repo<a class="headerlink" href="#how-to-create-your-own-scalarizr-repo" title="Permalink to this headline">¶</a></h2>
+<p>Setting up a Scalr integrated custom repository is very easy.  This capability allows for simple management of your custom repo, the available packages, and your custom release branches right from the Scalr server CLI!  Below are a few key points to note about the “repos” service:</p>
+<ul class="simple">
+<li>This service acts as a separate component from other services on the Scalr server.  If desired, it can be put on a dedicated server just like other Scalr components.</li>
+<li>The integrated repo service binds to port 6273 by default.  The Scalr proxy component will forward requests to it if the URI starts with /repos/</li>
+<li>The root dir of the repo is /opt/scalr-server/var/lib/repos, but this may be changed in config.</li>
+</ul>
+<p><strong>Enabling integrated repository tool</strong></p>
+<p>In order to configure the repos service on a multi server Scalr deployment, simply pick one of the app/proxy servers to also act as a repo-server.</p>
+<p>Add the following to scalr-server-local.rb on ONE app server:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>repos<span class="o">[</span>:enable<span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+</pre></div>
+</div>
+<p>Add the following to scalr-server.rb on ALL servers.  Be sure to change &lt;ip-of-repo-server&gt; to your selected app server IP:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>proxy<span class="o">[</span>:repos_upstreams<span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;&lt;ip-of-repo-server&gt;:6273&#39;</span><span class="o">]</span>
+
+repos<span class="o">[</span>:bind_host<span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;ip-of-repo-server&gt;&#39;</span>
+
+repos<span class="o">[</span>:bind_port<span class="o">]</span> <span class="o">=</span> <span class="m">6273</span>
+</pre></div>
+</div>
+<p>Run scalr-server-ctl reonfigure to ensure the changes are applied.</p>
+<p><strong>Managing Scalr Integrated Repo Service</strong></p>
+<p>Once you have added the above to your scalr-server.rb and reconfigured, you will be able to access the service via the command line with “scalr-server-manage agent-repo”.  If there are issues with your configuration, they will be noted when you run this command.  If config is correct, the following options will be displayed:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo
+Reading Scalr configuration...
+scalr-server-manage agent-repo status                            - Shows available remote and <span class="nb">local</span> repos
+scalr-server-manage agent-repo pull %version%                    - Downloads specified remote repo
+scalr-server-manage agent-repo delete %version%                  - Delete specified <span class="nb">local</span> version
+scalr-server-manage agent-repo link %local_name% %local_version% - Links specified <span class="nb">local</span> repo name to existing <span class="nb">local</span> version
+scalr-server-manage agent-repo unlink %local_name%               - Unlinks specified <span class="nb">local</span> repo
+</pre></div>
+</div>
+<p>Check the status of the service with agent-repo status:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo status
+Reading Scalr configuration...
+Fetching data from remote server...
+Remote versions <span class="o">[</span>linked repo<span class="o">]</span>:
+<span class="m">3</span>.2.11
+<span class="m">3</span>.4.4
+<span class="m">3</span>.5.9
+<span class="m">3</span>.6.8
+<span class="m">3</span>.7.9
+<span class="m">3</span>.8.5
+<span class="m">3</span>.9.9
+<span class="m">3</span>.10.1
+<span class="m">3</span>.11.9
+<span class="m">3</span>.12.7
+<span class="m">4</span>.1.9
+<span class="m">4</span>.2.9
+<span class="m">4</span>.3.9
+<span class="m">4</span>.4.1
+<span class="m">4</span>.5.9
+<span class="m">4</span>.6.6
+<span class="m">4</span>.7.9
+<span class="m">4</span>.8.3
+<span class="m">4</span>.9.9
+<span class="m">4</span>.10.2
+<span class="m">4</span>.11.9
+<span class="m">4</span>.12.2
+<span class="m">5</span>.1.9
+<span class="m">5</span>.2.2
+<span class="m">5</span>.3.9
+<span class="m">5</span>.4.0 <span class="o">[</span>stable<span class="o">]</span>
+<span class="m">5</span>.5.5 <span class="o">[</span>latest<span class="o">]</span>
+
+Local versions <span class="o">[</span>linked repo<span class="o">]</span>:
+
+No <span class="nb">local</span> versions were found. Use <span class="s1">&#39;scalr-server-manage agent-repo pull %version%&#39;</span> to download.
+
+No <span class="nb">local</span> repos were found. Use <span class="s1">&#39;scalr-server-manage agent-repo link %name% %version%&#39;</span> to create.
+</pre></div>
+</div>
+<p><strong>Download and set up a custom repo</strong></p>
+<p>As the previous command noted, we do not yet have any packages downloaded.  We will do so now.  The package for download may be referenced either by version number or by branch name:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo pull latest
+Reading Scalr configuration...
+Pulling <span class="m">5</span>.5.5 RPM packages... <span class="o">[</span> DONE <span class="o">]</span>
+Pulling <span class="m">5</span>.5.5 DEB packages... <span class="o">[</span> DONE <span class="o">]</span>
+Pulling <span class="m">5</span>.5.5 WIN packages... <span class="o">[</span> DONE <span class="o">]</span>
+</pre></div>
+</div>
+<p>Now that we have a local package, we need to create a link between this package and the branch name we want to create and offer to our users.  After successful link, we will be provided with the scalr-server.rb configuration required to enable the new repo:</p>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="vi">@ip</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="ss">:~</span><span class="c1"># scalr-server-manage agent-repo link TestRepo 5.5.5</span>
+<span class="no">Reading</span> <span class="no">Scalr</span> <span class="n">configuration</span><span class="o">...</span>
+<span class="no">Repo</span> <span class="s1">&#39;TestRepo&#39;</span> <span class="n">is</span> <span class="n">now</span> <span class="n">linked</span> <span class="n">to</span> <span class="n">version</span> <span class="mi">5</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="mi">5</span>
+
+<span class="no">Example</span> <span class="n">scalr</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">rb</span> <span class="n">config</span> <span class="n">snippet</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">your</span> <span class="ss">repo</span><span class="p">:</span>
+
+<span class="n">app</span><span class="o">[</span><span class="ss">:configuration</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s2">&quot;scalr&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="s2">&quot;scalarizr_update&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s2">&quot;mode&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;solo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;default_repo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;TestRepo&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;repos&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="s2">&quot;TestRepo&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="s2">&quot;rpm_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/rpm/TestRepo/rhel/$releasever/$basearch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deb_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/apt-plain/TestRepo /&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;win_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/win/TestRepo&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Be sure to merge the suggested configuration in to your scalr-server.rb and reconfigure.</p>
+<p>Running agent-repo status once more will show the status of our newly configured custom repo service:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo status
+Reading Scalr configuration...
+Fetching data from remote server...
+Remote versions <span class="o">[</span>linked repo<span class="o">]</span>:
+<span class="m">3</span>.2.11
+<span class="m">3</span>.4.4
+<span class="m">3</span>.5.9
+<span class="m">3</span>.6.8
+<span class="m">3</span>.7.9
+<span class="m">3</span>.8.5
+<span class="m">3</span>.9.9
+<span class="m">3</span>.10.1
+<span class="m">3</span>.11.9
+<span class="m">3</span>.12.7
+<span class="m">4</span>.1.9
+<span class="m">4</span>.2.9
+<span class="m">4</span>.3.9
+<span class="m">4</span>.4.1
+<span class="m">4</span>.5.9
+<span class="m">4</span>.6.6
+<span class="m">4</span>.7.9
+<span class="m">4</span>.8.3
+<span class="m">4</span>.9.9
+<span class="m">4</span>.10.2
+<span class="m">4</span>.11.9
+<span class="m">4</span>.12.2
+<span class="m">5</span>.1.9
+<span class="m">5</span>.2.2
+<span class="m">5</span>.3.9
+<span class="m">5</span>.4.0 <span class="o">[</span>stable<span class="o">]</span>
+<span class="m">5</span>.5.5 <span class="o">[</span>latest<span class="o">]</span> <span class="o">[</span>beta<span class="o">]</span>
+
+Local versions <span class="o">[</span>linked repo<span class="o">]</span>:
+<span class="m">5</span>.5.5 <span class="o">[</span>TestRepo<span class="o">]</span>
+</pre></div>
+</div>
+<p><strong>Removing custom repo branches and packages</strong>
+If we want to remove one of our custom repos we must first unlink the custom branch from the package:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo unlink TestRepo
+Reading Scalr configuration...
+Repo <span class="s1">&#39;TestRepo&#39;</span> has been removed
+</pre></div>
+</div>
+<p>We may then delete the repo files if necessary:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo delete <span class="m">5</span>.5.5
+Reading Scalr configuration...
+Version <span class="m">5</span>.5.5 has been deleted
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="scalr_server_maintenance.html" class="btn btn-neutral" title="Scalr Server Maintenance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, scalr_team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.01',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
