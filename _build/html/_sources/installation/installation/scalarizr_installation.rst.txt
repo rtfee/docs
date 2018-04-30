@@ -183,7 +183,7 @@ As the previous command noted, we do not yet have any packages downloaded.  We w
 
 Now that we have a local package, we need to create a link between this package and the branch name we want to create and offer to our users.  After successful link, we will be provided with the scalr-server.rb configuration required to enable the new repo:
 
-.. code-block:: ruby
+.. code-block:: shell
 
   root@ip-111-111-111-111:~# scalr-server-manage agent-repo link TestRepo 5.5.5
   Reading Scalr configuration...

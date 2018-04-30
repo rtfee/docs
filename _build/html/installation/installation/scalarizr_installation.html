@@ -440,27 +440,27 @@ Pulling <span class="m">5</span>.5.5 WIN packages... <span class="o">[</span> DO
 </pre></div>
 </div>
 <p>Now that we have a local package, we need to create a link between this package and the branch name we want to create and offer to our users.  After successful link, we will be provided with the scalr-server.rb configuration required to enable the new repo:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">root</span><span class="vi">@ip</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">111</span><span class="ss">:~</span><span class="c1"># scalr-server-manage agent-repo link TestRepo 5.5.5</span>
-<span class="no">Reading</span> <span class="no">Scalr</span> <span class="n">configuration</span><span class="o">...</span>
-<span class="no">Repo</span> <span class="s1">&#39;TestRepo&#39;</span> <span class="n">is</span> <span class="n">now</span> <span class="n">linked</span> <span class="n">to</span> <span class="n">version</span> <span class="mi">5</span><span class="o">.</span><span class="mi">5</span><span class="o">.</span><span class="mi">5</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@ip-111-111-111-111:~# scalr-server-manage agent-repo link TestRepo <span class="m">5</span>.5.5
+Reading Scalr configuration...
+Repo <span class="s1">&#39;TestRepo&#39;</span> is now linked to version <span class="m">5</span>.5.5
 
-<span class="no">Example</span> <span class="n">scalr</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">rb</span> <span class="n">config</span> <span class="n">snippet</span> <span class="n">to</span> <span class="n">enable</span> <span class="n">your</span> <span class="ss">repo</span><span class="p">:</span>
+Example scalr-server.rb config snippet to <span class="nb">enable</span> your repo:
 
-<span class="n">app</span><span class="o">[</span><span class="ss">:configuration</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s2">&quot;scalr&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="s2">&quot;scalarizr_update&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="s2">&quot;mode&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;solo&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;default_repo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;TestRepo&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;repos&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="s2">&quot;TestRepo&quot;</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="s2">&quot;rpm_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/rpm/TestRepo/rhel/$releasever/$basearch&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;deb_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/apt-plain/TestRepo /&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;win_repo_url&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;http://111.111.111.111/repos/win/TestRepo&quot;</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+app<span class="o">[</span>:configuration<span class="o">]</span> <span class="o">=</span> <span class="o">{</span>
+<span class="s2">&quot;scalr&quot;</span> <span class="o">=</span>&gt; <span class="o">{</span>
+  <span class="s2">&quot;scalarizr_update&quot;</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&quot;mode&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;solo&quot;</span>,
+    <span class="s2">&quot;default_repo&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;TestRepo&quot;</span>,
+    <span class="s2">&quot;repos&quot;</span> <span class="o">=</span>&gt; <span class="o">{</span>
+      <span class="s2">&quot;TestRepo&quot;</span> <span class="o">=</span>&gt; <span class="o">{</span>
+        <span class="s2">&quot;rpm_repo_url&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;http://111.111.111.111/repos/rpm/TestRepo/rhel/</span><span class="nv">$releasever</span><span class="s2">/</span><span class="nv">$basearch</span><span class="s2">&quot;</span>,
+        <span class="s2">&quot;deb_repo_url&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;http://111.111.111.111/repos/apt-plain/TestRepo /&quot;</span>,
+        <span class="s2">&quot;win_repo_url&quot;</span> <span class="o">=</span>&gt; <span class="s2">&quot;http://111.111.111.111/repos/win/TestRepo&quot;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 <p>Be sure to merge the suggested configuration in to your scalr-server.rb and reconfigure.</p>
