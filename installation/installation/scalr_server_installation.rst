@@ -40,6 +40,7 @@ Supported Operating Systems:
 Network Requirements
 ^^^^^^^^^^^^^^^^^^^^^^^^
 See the list below or the architecture diagram above:
+
 =====   ============   =========================================  =================================
 Port    Protocol       Direction                                  Usage
 =====   ============   =========================================  =================================

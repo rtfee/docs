@@ -197,24 +197,89 @@
 </div>
 <div class="section" id="network-requirements">
 <h2>Network Requirements<a class="headerlink" href="#network-requirements" title="Permalink to this headline">¶</a></h2>
-<p>See the list below or the architecture diagram above:
-=====   ============   =========================================  =================================
-Port    Protocol       Direction                                  Usage
-=====   ============   =========================================  =================================
-80       TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent
-443      TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent
-5671     TCP           Cloud Instance &gt; Scalr Server              Scalarizr Agent (rabbitmq)
-6275     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
-6276     TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
-6291     TCP           Between Scalr Server Nodes (excluding DB)  InfluxDB
-8008     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (update service)
-8009     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
-8010     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (API)
-8011     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
-8012     TCP           Scalr Host &gt; Cloud Instance                Reserved, not used at this time
-8013     TCP           Scalr Host &gt; Cloud Instance                Scalarizr Agent (control)
-15671    TCP           Between Scalr Server Nodes (excluding DB)  RabbitMQ
-=====   ============   =========================================  =================================</p>
+<p>See the list below or the architecture diagram above:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="13%" />
+<col width="45%" />
+<col width="36%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Port</th>
+<th class="head">Protocol</th>
+<th class="head">Direction</th>
+<th class="head">Usage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>80</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent</td>
+</tr>
+<tr class="row-odd"><td>443</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent</td>
+</tr>
+<tr class="row-even"><td>5671</td>
+<td>TCP</td>
+<td>Cloud Instance &gt; Scalr Server</td>
+<td>Scalarizr Agent (rabbitmq)</td>
+</tr>
+<tr class="row-odd"><td>6275</td>
+<td>TCP</td>
+<td>Between Scalr Server Nodes (excluding DB)</td>
+<td>RabbitMQ</td>
+</tr>
+<tr class="row-even"><td>6276</td>
+<td>TCP</td>
+<td>Between Scalr Server Nodes (excluding DB)</td>
+<td>RabbitMQ</td>
+</tr>
+<tr class="row-odd"><td>6291</td>
+<td>TCP</td>
+<td>Between Scalr Server Nodes (excluding DB)</td>
+<td>InfluxDB</td>
+</tr>
+<tr class="row-even"><td>8008</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (update service)</td>
+</tr>
+<tr class="row-odd"><td>8009</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-even"><td>8010</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (API)</td>
+</tr>
+<tr class="row-odd"><td>8011</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-even"><td>8012</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Reserved, not used at this time</td>
+</tr>
+<tr class="row-odd"><td>8013</td>
+<td>TCP</td>
+<td>Scalr Host &gt; Cloud Instance</td>
+<td>Scalarizr Agent (control)</td>
+</tr>
+<tr class="row-even"><td>15671</td>
+<td>TCP</td>
+<td>Between Scalr Server Nodes (excluding DB)</td>
+<td>RabbitMQ</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
