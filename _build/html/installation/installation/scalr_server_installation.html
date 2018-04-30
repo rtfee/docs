@@ -161,27 +161,28 @@
 <p>It is completely acceptable to group multiple components onto one virtual machine as the load for these services are minimal. The following are the recommended specs for the initial configuration:</p>
 <ul class="simple">
 <li>Load Balancer of choice. The target should be the Scalr servers over 80 or 443 and 5671.</li>
+<li>1 VM for the Worker:<ul>
+<li>4CPU, 8GB RAM</li>
+<li>100GB storage mounted on /opt/scalr-server on each server</li>
+<li>NOTE: Worker should only be enabled on one server.</li>
 </ul>
-<dl class="docutils">
-<dt><a href="#id1"><span class="problematic" id="id2">*</span></a>1 VM for the Worker:</dt>
-<dd><ul class="first last simple">
+</li>
+<li>1 VM for InfluxDB:<ul>
+<li>4CPU, 16GB RAM</li>
+<li>100GB storage mounted on /opt/scalr-server on each server</li>
+</ul>
+</li>
+<li>2 VMs for Proxy, Sessions, and App:<ul>
 <li>4CPU, 8GB RAM</li>
 <li>100GB storage mounted on /opt/scalr-server on each server</li>
 </ul>
-</dd>
-</dl>
-<ul class="simple">
-<li>1 VM for InfluxDB:</li>
+</li>
+<li>2 VMs for DB (active/passive):<ul>
+<li>4CPU, 8GB RAM</li>
+<li>750GB storage mounted on /opt/scalr-server on each server</li>
 </ul>
-<p>4CPU, 16GB RAM, 100GB storage mounted on /opt/scalr-server on each server</p>
-<ul class="simple">
-<li>2 VMs for Proxy, Sessions, and App:</li>
+</li>
 </ul>
-<p>4CPU, 8GB RAM, 100GB storage mounted on /opt/scalr-server on each server</p>
-<ul class="simple">
-<li>2 VMs for DB (active/passive):</li>
-</ul>
-<p>4CPU, 8GB RAM, 750GB storage mounted on /opt/scalr-server on each server</p>
 </div>
 </div>
 
