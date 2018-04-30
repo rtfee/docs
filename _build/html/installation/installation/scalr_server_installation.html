@@ -80,7 +80,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../installation.html">Install Guide</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Scalr Server Install Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scalr Server Install Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#architecture">Architecture</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -151,8 +154,22 @@
             
   <div class="section" id="scalr-server-install-guide">
 <h1>Scalr Server Install Guide<a class="headerlink" href="#scalr-server-install-guide" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">Some</span> <span class="no">Ruby</span> <span class="n">code</span><span class="o">.</span>
-</pre></div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>Scalr’s architecture consist of 7 modules (Proxy, App, Session, RabbitMQ, Worker, InfluxDB, Main DB, and Cost Analytics DB).  The recommended Scalr HA deployment consists of 6 VMs (Instances) and is outlined in the following diagram:</p>
+<p>It is completely acceptable to group multiple components onto one virtual machine as the load for these services are minimal. The following are the recommended specs for the initial configuration:</p>
+<ul class="simple">
+<li>Load Balancer of choice. The target should be the Scalr servers over 80 or 443 and 5671.</li>
+<li>1 VM for the Worker:</li>
+</ul>
+<p>4CPU, 8GB RAM ,100GB storage mounted on /opt/scalr-server on each server
+NOTE: Worker should only be enabled on one server.
+- 1 VM for InfluxDB:
+4CPU, 16GB RAM, 100GB storage mounted on /opt/scalr-server on each server
+- 2 VMs for Proxy, Sessions, and App:
+4CPU, 8GB RAM, 100GB storage mounted on /opt/scalr-server on each server
+- 2 VMs for DB (active/passive):
+4CPU, 8GB RAM, 750GB storage mounted on /opt/scalr-server on each server</p>
 </div>
 </div>
 
