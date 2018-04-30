@@ -29,3 +29,20 @@ It is completely acceptable to group multiple components onto one virtual machin
 
   * 4CPU, 8GB RAM
   * 750GB storage mounted on /opt/scalr-server on each server
+
+Supported Operating Systems: 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* RedHat Enterprise Linux 6.x or 7.x
+* Centos Linux 6.x or 7.x
+* Debian 7.x or 8.x
+* Ubuntu 14.04 or 16.04
+
+
+
+=====   ============   ===============================  ===================
+Port    Protocol       Direction                        Usage
+=====   ============   ===============================  ===================
+80       40            Cloud Instance > Scalr Server    Scalarizr Agent
+443      41
+5671     42
+=====   ============   ===============================  ===================
